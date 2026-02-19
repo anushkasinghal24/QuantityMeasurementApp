@@ -1,9 +1,11 @@
-/*The QuantityMeasurementApp class is responsible for checking the equality of two numerical values measured in feet within the Quantity Measurement Application. It ensures accurate comparisons and handles various edge cases.
- */
-
+/*The QuantityMeasurementApp class is responsible for checking the equality of two numerical values measured in feet within the Quantity Measurement Application. It ensures accurate comparisons and handles various edge cases. */
 package com.BridgeLabz.QuantityMeasurementApp.uc1_feet_equality_measurement;
+
+
 import java.util.*;
-    public class Feet{
+public class FeetEqualityMeasurement {
+
+    public static class Feet{
         private final double value;
         //Constructor to initialize the feet value
         public Feet(double value){
@@ -13,9 +15,9 @@ import java.util.*;
         public double getValue(){
             return value;
         }
-        //Override equals() from the Object class
+        
         @Override
-        public boolean equals(Object obj){
+        public boolean equals(Object obj){ //Override equals() from the Object class
             //Check if the object is the same reference (this == obj)
             if(this==obj){
                 return true;
@@ -24,16 +26,16 @@ import java.util.*;
             if(obj==null||getClass()!=obj.getClass()){
                 return false;
             }
-            Feet other=(Feet)obj; //Cast the object to Feet for comparison
-            return Double.compare(this.value, other.value)==0; 
+            Feet other=(Feet)obj; //Cast to Feet type safely
+            return Double.compare(this.value, other.value)==0; //Compare double values using Double.compare() instead of == operator
         }
 
         @Override
         public int hashCode(){
             return Objects.hashCode(value);
         }
-    
-    //Exception handling for invalid input
+    }
+
     public static double validateInput(String input){
         try{
             return Double.parseDouble(input);
@@ -44,15 +46,15 @@ import java.util.*;
     }
 
     public static void main(String args[]){
-        //Taking User Input for Feet Values
-        Scanner sc = new Scanner(System.in);
+        //Taking input from the user
+        Scanner sc=new Scanner(System.in);
 
         System.out.println("Enter first feet value:");
         String input1=sc.nextLine();
 
         System.out.println("Enter second feet value: ");
         String input2=sc.nextLine();
-        //Validating and Comparing the Feet Values
+        //The class validates the input values to ensure they are numeric
         try {
             double value1 = validateInput(input1);
             double value2 = validateInput(input2);
