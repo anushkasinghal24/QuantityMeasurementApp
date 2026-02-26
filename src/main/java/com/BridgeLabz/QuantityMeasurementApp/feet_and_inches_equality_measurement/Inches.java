@@ -1,4 +1,4 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc2_feet_and_inches_equality_measurement;
+package com.BridgeLabz.QuantityMeasurementApp.feet_and_inches_equality_measurement;
 
 public class Inches {
 

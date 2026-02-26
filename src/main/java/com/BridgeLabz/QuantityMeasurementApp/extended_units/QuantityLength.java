@@ -1,4 +1,4 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc3_generic_length;
+package com.BridgeLabz.QuantityMeasurementApp.extended_units;
 
 
 import java.util.Objects;
@@ -8,30 +8,21 @@ public class QuantityLength {
 
 
     private final double value;
-
     private final LengthUnit unit;
 
-    public QuantityLength(double value, LengthUnit unit) {
 
+
+    public QuantityLength(double value, LengthUnit unit) {
         if (unit == null) {
+
 
             throw new IllegalArgumentException("Unit cannot be null");
         }
 
+
         this.value = value;
         this.unit = unit;
     }
-
-    public double getValue() {
-        return value;
-    }
-
-
-
-    public LengthUnit getUnit() {
-        return unit;
-    }
-
 
 
     private double toBaseUnit() {
@@ -44,10 +35,10 @@ public class QuantityLength {
     public boolean equals(Object obj) {
 
         if (this == obj) return true;
-
         if (obj == null) return false;
-
         if (getClass() != obj.getClass()) return false;
+
+
 
         QuantityLength other = (QuantityLength) obj;
 
@@ -57,11 +48,8 @@ public class QuantityLength {
 
     @Override
     public int hashCode() {
-        return Objects.hash(toBaseUnit());
-    }
 
-    @Override
-    public String toString() {
-        return "Quantity(" + value + ", " + unit + ")";
+
+        return Objects.hash(toBaseUnit());
     }
 }

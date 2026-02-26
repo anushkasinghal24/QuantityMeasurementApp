@@ -1,5 +1,5 @@
 /*The QuantityMeasurementApp class is responsible for checking the equality of two numerical values measured in feet within the Quantity Measurement Application. It ensures accurate comparisons and handles various edge cases. */
-package com.BridgeLabz.QuantityMeasurementApp.uc1_feet_equality_measurement;
+package com.BridgeLabz.QuantityMeasurementApp.feet_equality_measurement;
 
 
 import java.util.*;
