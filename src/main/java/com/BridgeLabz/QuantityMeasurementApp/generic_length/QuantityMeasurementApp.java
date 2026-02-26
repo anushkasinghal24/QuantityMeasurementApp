@@ -1,4 +1,4 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc3_generic_length;
+package com.BridgeLabz.QuantityMeasurementApp.generic_length;
 
 
 public class QuantityMeasurementApp {

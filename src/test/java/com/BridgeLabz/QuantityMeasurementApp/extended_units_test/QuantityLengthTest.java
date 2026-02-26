@@ -1,7 +1,7 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc4_extended_units_test;
+package com.BridgeLabz.QuantityMeasurementApp.extended_units_test;
 
-import com.BridgeLabz.QuantityMeasurementApp.uc4_extended_units.QuantityLength;
-import com.BridgeLabz.QuantityMeasurementApp.uc4_extended_units.LengthUnit;
+import com.BridgeLabz.QuantityMeasurementApp.extended_units.QuantityLength;
+import com.BridgeLabz.QuantityMeasurementApp.extended_units.LengthUnit;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
