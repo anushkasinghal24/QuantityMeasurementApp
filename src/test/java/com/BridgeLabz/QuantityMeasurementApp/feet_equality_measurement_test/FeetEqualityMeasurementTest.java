@@ -1,5 +1,5 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc1_feet_equality_measurement_test;
-import com.BridgeLabz.QuantityMeasurementApp.uc1_feet_equality_measurement.FeetEqualityMeasurement;
+package com.BridgeLabz.QuantityMeasurementApp.feet_equality_measurement_test;
+import com.BridgeLabz.QuantityMeasurementApp.feet_equality_measurement.FeetEqualityMeasurement;
 
 
 import org.junit.jupiter.api.Test;
