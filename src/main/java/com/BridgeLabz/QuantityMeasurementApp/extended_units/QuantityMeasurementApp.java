@@ -1,4 +1,4 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc4_extended_units;
+package com.BridgeLabz.QuantityMeasurementApp.extended_units;
 
 public class QuantityMeasurementApp {
 

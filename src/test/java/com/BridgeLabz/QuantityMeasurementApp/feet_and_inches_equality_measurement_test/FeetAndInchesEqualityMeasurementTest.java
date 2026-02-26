@@ -1,7 +1,7 @@
-package com.BridgeLabz.QuantityMeasurementApp.uc2_feet_and_inches_equality_measurement_test;
-import com.BridgeLabz.QuantityMeasurementApp.uc2_feet_and_inches_equality_measurement.Feet;
-import com.BridgeLabz.QuantityMeasurementApp.uc2_feet_and_inches_equality_measurement.Inches;
-import com.BridgeLabz.QuantityMeasurementApp.uc2_feet_and_inches_equality_measurement.FeetAndInchesEqualityMeasurement;
+package com.BridgeLabz.QuantityMeasurementApp.feet_and_inches_equality_measurement_test;
+import com.BridgeLabz.QuantityMeasurementApp.feet_and_inches_equality_measurement.Feet;
+import com.BridgeLabz.QuantityMeasurementApp.feet_and_inches_equality_measurement.Inches;
+import com.BridgeLabz.QuantityMeasurementApp.feet_and_inches_equality_measurement.FeetAndInchesEqualityMeasurement;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
