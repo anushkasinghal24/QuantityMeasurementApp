@@ -2,8 +2,8 @@ package com.BridgeLabz.QuantityMeasurementApp.generic_quantity;
 
 public enum VolumeUnit implements IMeasurable {
 
-    LITRE(1.0),
-    MILLILITRE(0.001),
+    LITRE(1000),
+    MILLILITRE(1),
     GALLON(3.78541);
     private final double conversionFactor ;
 
@@ -16,6 +16,10 @@ public enum VolumeUnit implements IMeasurable {
     {
 
         return conversionFactor;
+    }
+    @Override
+    public String getMeasurementType() {
+        return "VOLUME";
     }
     @Override
     public String getUnitName()
