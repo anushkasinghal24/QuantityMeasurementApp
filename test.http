@@ -1,0 +1,31 @@
+### Test Compare API
+POST http://localhost:8080/api/quantity/compare
+Content-Type: application/json
+
+{
+  "value": 10,
+  "unit": "FEET"
+}
+
+###
+
+POST http://localhost:8080/api/quantity/compare
+Content-Type: application/json
+
+{
+  "value": 10,
+  "unit": "FEET"
+}
+
+###
+
+### Test Addition API
+POST http://localhost:8080/api/quantity/add
+Content-Type: application/json
+
+{
+  "value": 10,
+  "unit": "FEET"
+}
+
+###
