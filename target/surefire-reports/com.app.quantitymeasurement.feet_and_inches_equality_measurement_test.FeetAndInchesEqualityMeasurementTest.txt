@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.app.quantitymeasurement.feet_and_inches_equality_measurement_test.FeetAndInchesEqualityMeasurementTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.app.quantitymeasurement.feet_and_inches_equality_measurement_test.FeetAndInchesEqualityMeasurementTest
