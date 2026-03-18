@@ -92,12 +92,12 @@
 #DELETE http://localhost:8081/api/quantity/1
 
 ### 🔹 BASE CHECK
-GET http://localhost:8081/api/quantity
+GET http://localhost:8080/api/quantity/all
 
 ###
 
 ### 🔹 CONVERT API
-POST http://localhost:8081/api/quantity/convert
+POST http://localhost:8080/api/quantity/convert
 Content-Type: application/json
 
 {
@@ -109,7 +109,7 @@ Content-Type: application/json
 ###
 
 ### 🔹 COMPARE API
-POST http://localhost:8081/api/quantity/compare
+POST http://localhost:8080/api/quantity/compare
 Content-Type: application/json
 
 {
@@ -126,7 +126,7 @@ Content-Type: application/json
 ###
 
 ### 🔹 ADD API
-POST http://localhost:8081/api/quantity/add
+POST http://localhost:8080/api/quantity/add
 Content-Type: application/json
 
 {
@@ -143,7 +143,7 @@ Content-Type: application/json
 ###
 
 ### 🔹 SUBTRACT API
-POST http://localhost:8081/api/quantity/subtract
+POST http://localhost:8080/api/quantity/subtract
 Content-Type: application/json
 
 {
@@ -160,7 +160,7 @@ Content-Type: application/json
 ###
 
 ### 🔹 DIVIDE API
-POST http://localhost:8081/api/quantity/divide
+POST http://localhost:8080/api/quantity/divide
 Content-Type: application/json
 
 {
@@ -177,14 +177,14 @@ Content-Type: application/json
 ###
 
 ### 🔹 GET ALL RECORDS
-GET http://localhost:8081/api/quantity/all
+GET http://localhost:8080/api/quantity/all
 
 ###
 
 ### 🔹 GET BY ID
-GET http://localhost:8081/api/quantity/1
+GET http://localhost:8080/api/quantity/1
 
 ###
 
 ### 🔹 DELETE BY ID
-DELETE http://localhost:8081/api/quantity/1
+DELETE http://localhost:8080/api/quantity/1
