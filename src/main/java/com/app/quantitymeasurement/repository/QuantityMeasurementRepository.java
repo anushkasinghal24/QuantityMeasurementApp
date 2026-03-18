@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QuantityMeasurementRepository
         extends JpaRepository<QuantityMeasurementEntity, Long> {
-    void delete(Long id);
+    void deleteById(Long id);
     // List<QuantityMeasurement> findByUnitType(String unitType);
 }

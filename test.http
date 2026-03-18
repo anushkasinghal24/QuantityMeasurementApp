@@ -1,31 +1,190 @@
-### Test Compare API
-POST http://localhost:8080/api/quantity/compare
+
+
+#POST http://localhost:8081/api/quantity/convert
+#Content-Type: application/json
+#
+#{
+#  "value": 10,
+#  "fromUnit": "FEET",
+#  "toUnit": "INCHES"
+#}
+####
+#
+#### 🔹 COMPARE API
+#POST http://localhost:8081/api/quantity/compare
+#Content-Type: application/json
+#
+#{
+#  "q1": {
+#    "value": 10,
+#    "unit": "METER"
+#  },
+#  "q2": {
+#    "value": 1000,
+#    "unit": "CENTIMETER"
+#  }
+#}
+#
+####
+#
+#### 🔹 ADD API
+#POST http://localhost:8081/api/quantity/add
+#Content-Type: application/json
+#
+#{
+#  "q1": {
+#    "value": 5,
+#    "unit": "METER"
+#  },
+#  "q2": {
+#    "value": 200,
+#    "unit": "CENTIMETER"
+#  }
+#}
+#
+####
+#
+#### 🔹 SUBTRACT API
+#POST http://localhost:8081/api/quantity/subtract
+#Content-Type: application/json
+#
+#{
+#  "q1": {
+#    "value": 10,
+#    "unit": "METER"
+#  },
+#  "q2": {
+#    "value": 2,
+#    "unit": "METER"
+#  }
+#}
+#
+####
+#
+#### 🔹 DIVIDE API
+#POST http://localhost:8081/api/quantity/divide
+#Content-Type: application/json
+#
+#{
+#  "q1": {
+#    "value": 10,
+#    "unit": "METER"
+#  },
+#  "q2": {
+#    "value": 2,
+#    "unit": "METER"
+#  }
+#}
+#
+####
+#
+#### 🔹 GET ALL RECORDS
+#GET http://localhost:8081/api/quantity
+#
+####
+#
+#### 🔹 GET BY ID
+#GET http://localhost:8081/api/quantity/1
+#
+####
+#
+#### 🔹 DELETE BY ID
+#DELETE http://localhost:8081/api/quantity/1
+
+### 🔹 BASE CHECK
+GET http://localhost:8081/api/quantity
+
+###
+
+### 🔹 CONVERT API
+POST http://localhost:8081/api/quantity/convert
 Content-Type: application/json
 
 {
   "value": 10,
-  "unit": "FEET"
+  "fromUnit": "FEET",
+  "toUnit": "INCHES"
 }
 
 ###
 
-POST http://localhost:8080/api/quantity/compare
+### 🔹 COMPARE API
+POST http://localhost:8081/api/quantity/compare
 Content-Type: application/json
 
 {
-  "value": 10,
-  "unit": "FEET"
+  "q1": {
+    "value": 1,
+    "unit": "FEET"
+  },
+  "q2": {
+    "value": 12,
+    "unit": "INCHES"
+  }
 }
 
 ###
 
-### Test Addition API
-POST http://localhost:8080/api/quantity/add
+### 🔹 ADD API
+POST http://localhost:8081/api/quantity/add
 Content-Type: application/json
 
 {
-  "value": 10,
-  "unit": "FEET"
+  "q1": {
+    "value": 1,
+    "unit": "FEET"
+  },
+  "q2": {
+    "value": 12,
+    "unit": "INCHES"
+  }
 }
 
 ###
+
+### 🔹 SUBTRACT API
+POST http://localhost:8081/api/quantity/subtract
+Content-Type: application/json
+
+{
+  "q1": {
+    "value": 2,
+    "unit": "YARD"
+  },
+  "q2": {
+    "value": 1,
+    "unit": "FEET"
+  }
+}
+
+###
+
+### 🔹 DIVIDE API
+POST http://localhost:8081/api/quantity/divide
+Content-Type: application/json
+
+{
+  "q1": {
+    "value": 10,
+    "unit": "FEET"
+  },
+  "q2": {
+    "value": 2,
+    "unit": "FEET"
+  }
+}
+
+###
+
+### 🔹 GET ALL RECORDS
+GET http://localhost:8081/api/quantity/all
+
+###
+
+### 🔹 GET BY ID
+GET http://localhost:8081/api/quantity/1
+
+###
+
+### 🔹 DELETE BY ID
+DELETE http://localhost:8081/api/quantity/1

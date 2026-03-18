@@ -1,5 +1,5 @@
 //package com.app.quantitymeasurement.controller;
-//import com.app.quantitymeasurement.entity.dto.QuantityDTO;
+//import com.app.quantitymeasurement.dto.QuantityDTO;
 //import com.app.quantitymeasurement.repository.QuantityMeasurementCacheRepository;
 //import com.app.quantitymeasurement.service.IQuantityMeasurementService;
 //import com.app.quantitymeasurement.service.QuantityMeasurementServiceImpl;

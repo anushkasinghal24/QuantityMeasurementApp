@@ -1,6 +1,5 @@
 package com.app.quantitymeasurement.model;
 
-import com.app.quantitymeasurement.entity.model.QuantityModel;
 import com.app.quantitymeasurement.unit.generic_quantity.LengthUnit;
 import org.junit.jupiter.api.Test;
 
