@@ -15,7 +15,7 @@ CREATE TABLE user (
                       username VARCHAR(50),
                       password VARCHAR(100)
 );
-INSERT INTO user (username, password) VALUES ('admin', '1234');
+INSERT INTO user (username, password) VALUES ('admin', '$2a$10$47t1beBYx4J7n6jWLfYQhu40Qk/AnnBBDCi30d8RWilDoPJndHy2u');
 
 -- CREATE DATABASE quantity_measurement_db;
 -- USE quantity_measurement_db;
