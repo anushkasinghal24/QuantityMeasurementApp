@@ -226,9 +226,9 @@ curl -X POST http://localhost:8080/api/quantity/add \
 ## 🤝 Contributing Guidelines
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/<AmazingFeature>`)
+3. Commit your changes (`git commit -m 'Add some <AmazingFeature>'`)
+4. Push to the branch (`git push origin feature/<AmazingFeature>`)
 5. Open a Pull Request
 
 ### Development Guidelines
@@ -238,11 +238,8 @@ curl -X POST http://localhost:8080/api/quantity/add \
 - Update documentation for API changes
 - Ensure all tests pass before submitting PR
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-*Developed with ❤️ using Spring Boot and Java*</content>
+*Developed with using Spring Boot and Java*</content>
 <parameter name="filePath">e:\QuantityMeasurementApp\README.md
