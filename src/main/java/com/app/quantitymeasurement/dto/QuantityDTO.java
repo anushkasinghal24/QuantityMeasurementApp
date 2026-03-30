@@ -1,24 +1,3 @@
-//package com.app.quantitymeasurement.entity.dto;
-//
-//public class QuantityDTO {
-//
-//    private double value;
-//    private String unit;
-//
-//    public QuantityDTO(double value, String unit) {
-//        this.value = value;
-//        this.unit = unit;
-//    }
-//
-//    public double getValue() {
-//        return value;
-//    }
-//
-//    public String getUnit() {
-//        return unit;
-//    }
-//}
-
 package com.app.quantitymeasurement.dto;
 
 import jakarta.validation.constraints.Min;
