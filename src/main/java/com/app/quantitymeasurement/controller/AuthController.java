@@ -22,7 +22,8 @@ public class AuthController {
 
         String username = authentication.getName();
 
-        return jwtUtil.generateToken(username); // jwt return
+//        return jwtUtil.generateToken(username); // jwt return
+        return "This is secured";
     }
 
     @PostMapping("/login")
