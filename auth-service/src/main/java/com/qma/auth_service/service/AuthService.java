@@ -1,34 +1,41 @@
 package com.qma.auth_service.service;
 
-import com.qma.auth_service.dto.LoginRequest;
 import com.qma.auth_service.entity.User;
 import com.qma.auth_service.repository.UserRepository;
-import com.qma.auth_service.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthService {
 
     @Autowired
-    private UserRepository repo;
+    private UserRepository userRepository;
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private PasswordEncoder passwordEncoder;
 
-    public User signup(User user) {
-        return repo.save(user);
-    }
 
-    public String login(LoginRequest request) {
+    @Autowired
+    private JwtService jwtService;
 
-        User user = repo.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public String login(String username, String password) {
 
-        if (!user.getPassword().equals(request.getPassword())) {
-            throw new RuntimeException("Invalid password");
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        // 🔥 IMPORTANT FIX
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid password");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        return jwtService.generateToken(user.getUsername());
+    }
+
+    public void logout(String token) {
+        // TODO: store token in blacklist (Redis later)
+        System.out.println("Logout successful, token: " + token);
     }
 }
