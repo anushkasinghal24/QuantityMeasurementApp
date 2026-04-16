@@ -1,245 +1,173 @@
 # Quantity Measurement App
 
-## 📋 Project Description
+A simple Spring Boot based application for measuring, comparing, converting, and performing arithmetic on quantities like length, weight, volume, and temperature.
 
-A robust Spring Boot application designed to handle arithmetic operations (addition, subtraction, division) and conversions between various quantity measurements including length (feet, inches, yards), weight, volume, and temperature. The application implements a generic quantity system with unit interfaces to support multi-category measurements, ensuring type safety and extensibility.
+## What This Project Does
 
-## ✨ Features
+- Compare two quantities
+- Add, subtract, and divide compatible quantities
+- Convert values between supported units
+- Store and manage quantity history
+- Secure APIs with JWT and Google OAuth login
 
-- **Equality Checks**: Compare quantities across different units within the same category
-- **Unit Conversions**: Convert between compatible units (e.g., feet to inches, kilograms to grams)
-- **Arithmetic Operations**: Perform addition, subtraction, and division on quantities
-- **Multi-Category Support**: Handle length, weight, volume, and temperature measurements
-- **Generic Quantity System**: Extensible architecture using interfaces for different unit types
-- **Database Integration**: Persistent storage with JPA and H2/MySQL support
-- **Authentication**: JWT-based authentication with OAuth Google login
-- **RESTful API**: Clean REST endpoints for all operations
-- **N-Tier Architecture**: Separation of concerns with service, repository, and controller layers
+## Merged UC Summary
 
-## 🛠 Tech Stack
+These are the earlier branch features that were merged into `main`, explained in a short and simple way:
 
-### Backend
-- **Java**: 21
-- **Spring Boot**: 3.2.5
-- **Spring Security**: Authentication and authorization
-- **Spring Data JPA**: Database operations
-- **JWT**: Token-based authentication
-- **OAuth 2.0**: Google authentication integration
+- UC1: Feet equality
+- UC2: Inch equality
+- UC3: Generic length support
+- UC4: Yard equality
+- UC5: Unit-to-unit conversion
+- UC6: Quantity addition
+- UC7: Addition in target unit
+- UC8: Standalone unit support
+- UC9: Weight measurement support
+- UC10: Generic quantity class
+- UC11: Volume measurement support
+- UC12: Subtraction and division
+- UC13: Centralized arithmetic logic
+- UC14: Temperature measurement support
+- UC15: N-tier architecture
+- UC16: Database integration
+- UC17: Spring Boot framework integration
+- UC18: Google OAuth authentication
 
-### Database
-- **H2**: In-memory database for testing
-- **MySQL**: Production database
+## UC21 Microservices Architecture
 
-### Tools & Build
-- **Maven**: Dependency management and build tool
-- **Lombok**: Code generation for boilerplate
+This project also includes the UC21 microservices setup. The application is split into small services so each part can be developed and deployed independently.
 
-## 📁 Project Structure
+### Services
 
+| Service | Purpose | Default Port |
+|---------|---------|--------------|
+| `eureka-server` | Service registry for all microservices | `8761` |
+| `api-gateway` | Single entry point for all client requests | `8080` |
+| `auth-service` | Login, JWT, and Google OAuth authentication | `8082` |
+| `quantity-service` | Quantity operations and conversions | `8081` |
+| `history-service` | Stores and returns operation history | `8083` |
+
+### Request Flow
+
+1. The client sends requests to `api-gateway`.
+2. The gateway forwards requests to the correct microservice.
+3. Each service registers itself with `eureka-server`.
+4. `auth-service` handles authentication and token generation.
+5. `quantity-service` handles measurement logic.
+6. `history-service` stores operation history.
+
+### Main Routes
+
+- `/api/auth/**` -> `auth-service`
+- `/api/quantity/**` -> `quantity-service`
+- `/api/history/**` -> `history-service`
+
+## Tech Stack
+
+- Java 21
+- Spring Boot 3.2.5
+- Spring Security
+- Spring Data JPA
+- JWT
+- Google OAuth2
+- Eureka Server
+- Spring Cloud Gateway
+- MySQL
+- H2 for local testing in the monolith module
+- Maven
+
+## Project Layout
+
+```text
+QuantityMeasurementApp/
+|-- src/                  # Main Spring Boot application
+|-- api-gateway/          # Gateway service
+|-- auth-service/         # Auth microservice
+|-- eureka-server/        # Service registry
+|-- history-service/      # History microservice
+|-- quantity-service/     # Quantity microservice
+|-- spring-boot-temp/     # Old/sample project files
+|-- test.http             # API test requests
 ```
-quantitymeasurement/
-├── src/main/java/com/app/quantitymeasurement/
-│   ├── Application.java                 # Main Spring Boot application class
-│   ├── config/                          # Configuration classes
-│   ├── controller/                      # REST controllers (Auth, QuantityMeasurement)
-│   ├── dto/                             # Data Transfer Objects
-│   ├── entity/                          # JPA entities
-│   ├── exception/                       # Custom exceptions
-│   ├── model/                           # Domain models and units
-│   ├── repository/                      # Data access layer
-│   ├── security/                        # Security configuration and JWT utilities
-│   ├── service/                         # Business logic layer
-│   └── util/                            # Utility classes
-├── src/main/resources/
-│   ├── application.properties           # Application configuration
-│   └── db/schema.sql                    # Database schema
-└── src/test/java/com/app/quantitymeasurement/
-    ├── ApplicationTests.java            # Main test class
-    └── [feature-specific test packages] # Comprehensive test suites
-```
 
-## 🚀 Installation & Setup Instructions
+## How To Run
 
 ### Prerequisites
-- Java 21 or higher
+
+- Java 21
 - Maven 3.6+
-- MySQL (optional, H2 for development)
+- MySQL
 
-### Steps
+### Start Order
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd quantitymeasurement
-   ```
+1. Start `eureka-server`
+2. Start `quantity-service`
+3. Start `auth-service`
+4. Start `history-service`
+5. Start `api-gateway`
 
-2. **Configure Database** (Optional)
-   - For MySQL: Update `application.properties` with your database credentials
-   - For H2: No configuration needed (default)
-
-3. **Build the project**
-   ```bash
-   mvn clean install
-   ```
-
-4. **Run the application**
-   ```bash
-   mvn spring-boot:run
-   ```
-
-5. **Verify installation**
-   - Application will start on `http://localhost:8080`
-   - H2 Console (if using H2): `http://localhost:8080/h2-console`
-
-## 📖 Usage Instructions
-
-### Authentication
-- **Login**: POST `/api/auth/login` with username/password
-- **Google OAuth**: GET `/api/auth/google-success` (after OAuth flow)
-
-### Quantity Operations
-Use tools like Postman or curl to interact with the REST API:
+### Build
 
 ```bash
-# Compare two quantities
+mvn clean install
+```
+
+### Run the main app
+
+```bash
+mvn spring-boot:run
+```
+
+## Important Notes
+
+- Gateway default URL: `http://localhost:8080`
+- Eureka dashboard: `http://localhost:8761`
+- MySQL database name: `qma_db`
+- Google OAuth is configured in `auth-service`
+
+## Example API Calls
+
+### Compare quantities
+
+```bash
 curl -X POST http://localhost:8080/api/quantity/compare \
   -H "Content-Type: application/json" \
   -d '{"q1":{"value":1,"unit":"FEET"},"q2":{"value":12,"unit":"INCH"}}'
+```
 
-# Add quantities
+### Add quantities
+
+```bash
 curl -X POST http://localhost:8080/api/quantity/add \
   -H "Content-Type: application/json" \
   -d '{"q1":{"value":5,"unit":"FEET"},"q2":{"value":6,"unit":"INCH"}}'
 ```
 
-## 🔗 API Endpoints
+## API Overview
 
-| Method | Endpoint | Description | Request Body |
-|--------|----------|-------------|--------------|
-| POST | `/api/auth/login` | User authentication | `username`, `password` (form data) |
-| GET | `/api/auth/google-success` | Google OAuth callback | - |
-| POST | `/api/quantity/compare` | Compare two quantities | `QuantityRequest` |
-| POST | `/api/quantity/add` | Add two quantities | `QuantityRequest` |
-| POST | `/api/quantity/subtract` | Subtract quantities | `QuantityRequest` |
-| POST | `/api/quantity/divide` | Divide quantities | `QuantityRequest` |
-| POST | `/api/quantity/convert` | Convert between units | `ConvertRequest` |
-| GET | `/api/quantity/all` | Get all stored measurements | - |
-| GET | `/api/quantity/{id}` | Get measurement by ID | - |
-| DELETE | `/api/quantity/{id}` | Delete measurement by ID | - |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/login` | Login with username and password |
+| GET | `/api/auth/google-success` | Google OAuth callback |
+| POST | `/api/quantity/compare` | Compare two quantities |
+| POST | `/api/quantity/add` | Add two quantities |
+| POST | `/api/quantity/subtract` | Subtract quantities |
+| POST | `/api/quantity/divide` | Divide quantities |
+| POST | `/api/quantity/convert` | Convert between units |
+| GET | `/api/quantity/all` | Get all stored measurements |
+| GET | `/api/quantity/{id}` | Get one measurement by id |
+| DELETE | `/api/quantity/{id}` | Delete a measurement |
 
-### Request/Response Examples
+## Files You May Want To Check
 
-**QuantityRequest**:
-```json
-{
-  "q1": {"value": 5.0, "unit": "FEET"},
-  "q2": {"value": 60.0, "unit": "INCH"}
-}
-```
+- `src/main/resources/application.properties`
+- `api-gateway/target/classes/application.properties`
+- `auth-service/target/classes/application.properties`
+- `quantity-service/target/classes/application.properties`
+- `history-service/target/classes/application.properties`
+- `eureka-server/target/classes/application.properties`
+- `test.http`
 
-**ConvertRequest**:
-```json
-{
-  "value": 100.0,
-  "fromUnit": "CENTIMETER",
-  "toUnit": "METER"
-}
-```
+## Short Summary
 
-## 📸 Screenshots / Demo
-
-*Coming soon - Screenshots of the API responses and database interactions will be added here.*
-
-## 🏗 Development Timeline
-
-- **Feb 17, 2026**: Project initialization and first commit
-- **Feb 18-19, 2026**: Implemented feet equality measurement (UC1)
-- **Feb 20, 2026**: Added inch equality (UC2) and generic length support (UC3)
-- **Feb 23, 2026**: Extended units with yard equality (UC4) and unit-to-unit conversion (UC5)
-- **Feb 26-27, 2026**: Implemented unit addition (UC6), target unit addition (UC7), and standalone units (UC8)
-- **Mar 5, 2026**: Added weight measurements (UC9), generic quantity class (UC10), volume measurements (UC11), subtraction/division operations (UC12), and centralized arithmetic logic (UC13)
-- **Mar 10, 2026**: Temperature measurements with selective arithmetic support (UC14)
-- **Mar 11, 2026**: N-Tier architecture implementation (UC15)
-- **Mar 16, 2026**: Database integration (UC16)
-- **Mar 17-18, 2026**: Spring Framework integration (UC17)
-- **Mar 25, 2026**: OAuth authentication with Google (UC18)
-- **Mar 30, 2026**: Final integration and README completion
-
-## 📊 Progress Tracker
-
-| Date | Day | Task Completed | Description | Status |
-|------|-----|----------------|-------------|--------|
-| 2026-02-17 | Day 1 | Project Setup | Initial commit and project structure | ✅ Completed |
-| 2026-02-18 | Day 2 | UC1 - Feet Equality | Basic feet measurement equality checks | ✅ Completed |
-| 2026-02-19 | Day 3 | UC1 Refinement | Refactored feet equality implementation | ✅ Completed |
-| 2026-02-20 | Day 4 | UC2 - Inch Equality | Inch measurement equality functionality | ✅ Completed |
-| 2026-02-20 | Day 4 | UC3 - Generic Length | Generic length measurement support | ✅ Completed |
-| 2026-02-23 | Day 7 | UC4 - Yard Equality | Extended units with yard measurements | ✅ Completed |
-| 2026-02-23 | Day 7 | UC5 - Unit Conversion | Unit-to-unit conversion logic | ✅ Completed |
-| 2026-02-26 | Day 10 | UC6 - Unit Addition | Addition operations for quantities | ✅ Completed |
-| 2026-02-26 | Day 10 | UC7 - Target Unit Addition | Target unit addition functionality | ✅ Completed |
-| 2026-02-27 | Day 11 | UC8 - Standalone Unit | Standalone unit handling | ✅ Completed |
-| 2026-03-05 | Day 17 | UC9 - Weight Measurement | Weight measurement operations | ✅ Completed |
-| 2026-03-05 | Day 17 | UC10 - Generic Quantity | Generic quantity class with unit interface | ✅ Completed |
-| 2026-03-05 | Day 17 | UC11 - Volume Measurement | Volume measurement support | ✅ Completed |
-| 2026-03-05 | Day 17 | UC12 - Subtraction/Division | Subtraction and division operations | ✅ Completed |
-| 2026-03-05 | Day 17 | UC13 - Centralized Logic | DRY arithmetic logic implementation | ✅ Completed |
-| 2026-03-10 | Day 22 | UC14 - Temperature | Temperature measurements with selective arithmetic | ✅ Completed |
-| 2026-03-11 | Day 23 | UC15 - N-Tier Architecture | Multi-layer architecture implementation | ✅ Completed |
-| 2026-03-16 | Day 28 | UC16 - Database Integration | JPA and database persistence | ✅ Completed |
-| 2026-03-17 | Day 29 | UC17 - Spring Integration | Spring Boot framework integration | ✅ Completed |
-| 2026-03-18 | Day 30 | API Refinement | API request path improvements | ✅ Completed |
-| 2026-03-25 | Day 37 | UC18 - OAuth Authentication | Google OAuth authentication | ✅ Completed |
-| 2026-03-30 | Day 42 | Final Integration | Resolved conflicts and final README | ✅ Completed |
-
-## 🔍 Challenges Faced
-
-- **Generic Quantity System**: Designing a flexible interface-based system to support multiple measurement categories while maintaining type safety
-- **Unit Conversion Logic**: Implementing accurate conversion ratios and handling edge cases for different unit types
-- **Arithmetic Operations**: Ensuring operations only work on compatible units within the same category
-- **N-Tier Architecture**: Properly separating concerns between controllers, services, and repositories
-- **Database Integration**: Mapping complex quantity objects to relational database structures
-- **Authentication Flow**: Integrating JWT with OAuth for seamless user authentication
-- **Branch Management**: Managing 18 feature branches and resolving merge conflicts
-
-## 📚 Learnings
-
-- **Test-Driven Development (TDD)**: Extensive use of unit tests drove clean, reliable code implementation
-- **Spring Boot Ecosystem**: Deep understanding of Spring Security, JPA, and RESTful API development
-- **Generic Programming**: Using interfaces and generics for extensible, type-safe quantity systems
-- **Git Branching Strategy**: Effective feature branch workflow for large-scale development
-- **OAuth Integration**: Implementing third-party authentication flows
-- **Database Design**: Proper entity relationships and schema design for measurement data
-- **API Design**: RESTful principles and proper HTTP method usage
-
-## 🚀 Future Enhancements
-
-- **Web UI**: React/Angular frontend for user-friendly quantity operations
-- **Additional Units**: Support for more measurement categories (area, time, currency)
-- **Advanced Operations**: Multiplication, complex calculations, and formula support
-- **Caching**: Redis integration for performance optimization
-- **Microservices**: Split into separate services for scalability
-- **API Documentation**: Swagger/OpenAPI integration
-- **Containerization**: Docker support for easy deployment
-- **Monitoring**: Application metrics and health checks
-
-## 🤝 Contributing Guidelines
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/<AmazingFeature>`)
-3. Commit your changes (`git commit -m 'Add some <AmazingFeature>'`)
-4. Push to the branch (`git push origin feature/<AmazingFeature>`)
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow TDD principles - write tests before implementation
-- Maintain code coverage above 80%
-- Use meaningful commit messages
-- Update documentation for API changes
-- Ensure all tests pass before submitting PR
-
-
----
-
-*Developed with using Spring Boot and Java*</content>
-<parameter name="filePath">e:\QuantityMeasurementApp\README.md
+This repository now has one clean README that explains the project in simple language and includes the UC21 microservices architecture details.
