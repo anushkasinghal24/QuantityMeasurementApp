@@ -24,6 +24,8 @@ public class HistoryService {
         h.setMeasurementType((String) data.getOrDefault("measurementType", "UNKNOWN"));
         Object val = data.get("inputValue");
         if (val instanceof Number) h.setInputValue(((Number) val).doubleValue());
+        Object val2 = data.get("value2");
+        if (val2 instanceof Number) h.setValue2(((Number) val2).doubleValue());
         h.setResult(String.valueOf(data.get("result")));
         return repository.save(h);
     }

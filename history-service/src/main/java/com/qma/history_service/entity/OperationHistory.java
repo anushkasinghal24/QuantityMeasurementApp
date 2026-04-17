@@ -16,6 +16,7 @@ public class OperationHistory {
     private String fromUnit;
     private String toUnit;
     private Double inputValue;
+    private Double value2;
     private String result;
     private String measurementType;
 
@@ -32,6 +33,8 @@ public class OperationHistory {
     public void setToUnit(String toUnit) { this.toUnit = toUnit; }
     public Double getInputValue() { return inputValue; }
     public void setInputValue(Double inputValue) { this.inputValue = inputValue; }
+    public Double getValue2() { return value2; }
+    public void setValue2(Double value2) { this.value2 = value2; }
     public String getResult() { return result; }
     public void setResult(String result) { this.result = result; }
     public String getMeasurementType() { return measurementType; }

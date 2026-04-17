@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDateTime;
 
@@ -38,7 +39,7 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
 
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
 
                 .exceptionHandling(ex -> ex
@@ -107,10 +108,13 @@ public class SecurityConfig {
 
             String token = jwtService.generateToken(user.getUsername());
 
-            String redirectUrl = frontendUrl + "/oauth-callback"
-                    + "?token=" + token
-                    + "&username=" + user.getUsername()
-                    + "&email=" + (email != null ? email : "");
+            String redirectUrl = UriComponentsBuilder.fromHttpUrl(frontendUrl)
+                    .path("/oauth-callback")
+                    .queryParam("token", token)
+                    .queryParam("username", user.getUsername())
+                    .queryParam("email", email != null ? email : "")
+                    .build()
+                    .toUriString();
 
             response.sendRedirect(redirectUrl);
         };
