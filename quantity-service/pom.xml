@@ -47,6 +47,13 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+		<!-- H2 fallback for local and Railway boot without managed MySQL -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- Cache -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
