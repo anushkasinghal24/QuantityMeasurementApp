@@ -1,12 +1,13 @@
 package com.qma.auth_service.service;
 
-import java.security.Key;
-import java.util.Date;
-
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.security.Key;
+import java.util.Date;
 
 @Service
 public class JwtService {
@@ -18,9 +19,9 @@ public class JwtService {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String generateToken(String email) {
+    public String generateToken(String username) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .signWith(getKey())
@@ -36,9 +37,9 @@ public class JwtService {
                 .getSubject();
     }
 
-    public boolean validateToken(String token, String email) {
+    public boolean validateToken(String token, String username) {
         try {
-            return extractUsername(token).equals(email) && !isTokenExpired(token);
+            return extractUsername(token).equals(username) && !isTokenExpired(token);
         } catch (Exception e) {
             return false;
         }
