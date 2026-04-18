@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -52,8 +54,9 @@ public class HistoryController {
             @RequestBody Map<String, Object> data,
             @Parameter(hidden = true) @RequestHeader(value = "X-User-Name", required = false) String xUsername) {
         try {
-            if (!data.containsKey("username") && xUsername != null) {
-                data.put("username", xUsername);
+            String username = resolveUsername(xUsername, null);
+            if (!data.containsKey("username") && username != null) {
+                data.put("username", username);
             }
             OperationHistory saved = historyService.save(data);
             return ResponseEntity.ok(saved);
@@ -117,6 +120,12 @@ public class HistoryController {
 
     private String resolveUsername(String xUsername, String authHeader) {
         if (xUsername != null && !xUsername.isEmpty()) return xUsername;
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getName() != null && !authentication.getName().isEmpty()) {
+            return authentication.getName();
+        }
+
         return null;
     }
 }

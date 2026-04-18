@@ -15,6 +15,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -78,7 +80,8 @@ public class QuantityController {
             @Parameter(hidden = true) @RequestHeader(value = "X-User-Name", required = false) String username) {
         try {
             double result = quantityService.convert(request.getValue(), request.getFromUnit(), request.getToUnit());
-            if (username != null && !username.isEmpty()) {
+            String resolvedUsername = resolveUsername(username);
+            if (resolvedUsername != null && !resolvedUsername.isEmpty()) {
                 quantityService.saveConvertOperation(request.getValue(), request.getFromUnit(), request.getToUnit(), result);
             }
             return ResponseEntity.ok(Map.of(
@@ -286,5 +289,18 @@ public class QuantityController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         try { return ResponseEntity.ok(Map.of("message", quantityService.deleteById(id))); }
         catch (Exception e) { return ResponseEntity.notFound().build(); }
+    }
+
+    private String resolveUsername(String xUsername) {
+        if (xUsername != null && !xUsername.isEmpty()) {
+            return xUsername;
+        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getName() != null && !authentication.getName().isEmpty()) {
+            return authentication.getName();
+        }
+
+        return null;
     }
 }

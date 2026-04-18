@@ -23,6 +23,9 @@ public class JwtFilter extends OncePerRequestFilter {
     @Value("${JWT_SECRET:myveryveryverylongsecretkey123456789}")
     private String SECRET;
 
+
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
