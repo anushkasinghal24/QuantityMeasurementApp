@@ -7,6 +7,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -19,14 +20,14 @@ import java.util.Date;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final String SECRET = "myveryveryverylongsecretkey123456789";
+    @Value("${JWT_SECRET:myveryveryverylongsecretkey123456789}")
+    private String SECRET;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // If gateway forwarded username header - use it directly
         String xUsername = request.getHeader("X-User-Name");
         if (xUsername != null && !xUsername.isEmpty()) {
             UsernamePasswordAuthenticationToken auth =
