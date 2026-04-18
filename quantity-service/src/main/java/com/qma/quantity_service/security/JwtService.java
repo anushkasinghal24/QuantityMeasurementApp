@@ -2,6 +2,7 @@ package com.qma.quantity_service.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -9,8 +10,8 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    // ⚠️ MUST MATCH auth-service JwtService secret exactly
-    private final String SECRET = "myveryveryverylongsecretkey123456789";
+    @Value("${JWT_SECRET:myveryveryverylongsecretkey123456789}")
+    private String SECRET;
 
     public String extractUsername(String token) {
         return getClaims(token).getSubject();
